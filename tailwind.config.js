@@ -5,11 +5,14 @@ export default defineConfig({
     content: [
         './resources/**/*.blade.php',
         './resources/**/*.js',
-        './resources/**/*.vue',
     ],
-    
+
     theme: {
-        extend: {},
+        extend: {
+            colors : {
+                "black": "#060606"
+            },
+        },
     },
 
     plugins: [
