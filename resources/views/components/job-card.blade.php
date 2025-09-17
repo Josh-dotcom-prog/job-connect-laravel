@@ -11,5 +11,5 @@
         <x-tag>Tag</x-tag>
     </div>
 
-    <img src="http://placeholder.it/42/42" alt="" class="rounded-xl">
+    <img src="http://picsum.photos/100/100" alt="" class="rounded-xl">
 </div>
