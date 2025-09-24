@@ -1,5 +1,11 @@
 <x-layout>
     <div class="space-y-10">
+        <section>
+            <h1 class="font-bold text-4xl">Let's Find Your Next Job</h1>
+            <form action="">
+                <input type="text" placeholder="Web developer...">
+            </form>
+        </section>
         {{-- featured jobs section --}}
         <section>
             <x-section-heading>Featured Jobs</x-section-heading>
