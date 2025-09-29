@@ -20,13 +20,14 @@ class Job extends Model
         return $this->hasMany(Job::class);
     }
 
-    public function tag()
+    public function tag(string $name)
     {
-        return $this->belongsToMany(Tag::class);
+        $tag = Tag::firstOrCreate(['name' => $name]);
+        $this->tags()->attach($tag->id);
     }
 
     public function tags()
     {
-        return $this->belongsTo(Employer::class);
+        return $this->belongsToMany(Tag::class);
     }
 }

@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Job;
 use App\Models\Tag;
 
-
 return new class extends Migration
 {
     /**
@@ -16,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('job_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(Job::class)->contrained()->cascadeOnDelete();
-            $table->foreignId(Tag::class)->contrained()->cascadeOnDelete();
+            $table->foreignIdFor(Job::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
+
+            // Optional: Add unique constraint to prevent duplicate relationships
+            $table->unique(['job_id', 'tag_id']);
         });
     }
 

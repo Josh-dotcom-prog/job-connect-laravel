@@ -26,7 +26,7 @@ class JobTest extends TestCase
         $this->assertTrue($job->employer->is($employer));
     }
 
-    public function can_have_tags()
+    public function test_can_have_tags()
     {
         $job = Job::factory()->create();
 
