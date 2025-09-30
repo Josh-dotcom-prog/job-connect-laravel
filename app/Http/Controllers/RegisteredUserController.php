@@ -3,18 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rules\File;
+use App\Models\User;
+use App\Models\Employer;
+use Illuminate\Support\Facades\Hash;
 
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -28,38 +25,26 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $userAttributes = $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'confirmed', Password::min(6)],
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $employerAttributes = $request->validate([
+            'employer' => ['required'],
+            'logo' => ['required', File::types(['png', 'jpg', 'jpeg'])],
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $user = User::create($userAttributes);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        $logoPath = $request->logo->store('logos');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $user->employer()->create([
+            'name' => $employerAttributes['employer'],
+            'logo' => $logoPath,
+        ]);
+
+        return redirect('/');
     }
 }
