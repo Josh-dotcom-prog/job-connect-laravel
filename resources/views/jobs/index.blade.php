@@ -11,13 +11,10 @@
         <section class="pt-10">
             <x-section-heading>Featured Jobs</x-section-heading>
             <div class="grid lg:grid-cols-3 gap-8 mt-6">
-                <div class="mt-6 space-y-6">
-
-                    @foreach($jobs as $job)
-                        <x-job-card :$job />
-                    @endforeach
-
-                </div>
+                @foreach($featuredJobs as $job)
+                    <x-job-card :$job />
+                @endforeach
+            </div>
         </section>
 
         {{-- Tags section --}}
