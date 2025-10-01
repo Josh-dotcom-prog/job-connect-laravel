@@ -28,8 +28,14 @@
             </div>
 
             @auth
-                <div>
+                <div class="space-x-6 font-bold flex">
                     <a href="/jobs/create">Post a Job</a>
+
+                    <!--Logout-->
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <button class="text-red-500 ml-4">Log Out</button>
+                    </form>
                 </div>
             @endauth
 
